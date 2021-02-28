@@ -22,7 +22,7 @@ jobs:
         pip install -r local-requirements.txt
         pip install -e .
     - name: Build package
-      run: python setup.py bdist_wheel
+      run: python setup.py bdist_wheel --all
     - name: Publish package
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
