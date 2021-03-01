@@ -44,7 +44,10 @@ class Channel(AsyncIOEventEmitter):
         if params is None:
             params = {}
         callback = self._connection._send_message_to_server(self._guid, method, params)
-        result = await callback.future
+        try:
+            result = await callback.future
+        except:
+            return None
         # Protocol now has named return values, assume result is one level deeper unless
         # there is explicit ambiguity.
         if not result:
